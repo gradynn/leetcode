@@ -1,16 +1,14 @@
 class StockSpanner:
 
     def __init__(self):
-        self.hist = []
+        self.stack = [] #[[span, price]]
 
     def next(self, price: int) -> int:
         count = 1
-        for stock in self.hist[::-1]:
-            if stock > price:
-                break
-            else:
-                count += 1
-        self.hist.append(price)
+        while self.stack and self.stack[-1][1] <= price:
+            span, p = self.stack.pop()
+            count += span
+        self.stack.append([count, price])
         return count
             
 
