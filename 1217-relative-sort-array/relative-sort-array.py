@@ -1,17 +1,17 @@
 class Solution:
     def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
-        out = []
-
-        for key in arr2:
-            i = 0
-            print(arr1, key)
-            while i < len(arr1):
-                if arr1[i] == key:
-                    to_move = arr1.pop(i)
-                    out.append(to_move)
-                else:
-                    i += 1
+        arr2_set = set(arr2)
+        arr1_counts = defaultdict(int)
+        remainder = []
+        for n in arr1:
+            if n not in arr2_set:
+                remainder.append(n)
+            else:
+                arr1_counts[n] += 1
         
-        out = out + sorted(arr1)
+        out = []
+        for n in arr2:
+            for i in range(arr1_counts[n]):
+                out.append(n)
 
-        return out
+        return out + sorted(remainder)
