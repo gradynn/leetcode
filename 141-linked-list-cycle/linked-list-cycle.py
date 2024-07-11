@@ -7,12 +7,12 @@
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         ptr = head
-        seen = set()
+        count = 1
 
         while ptr:
-            if ptr in seen:
+            if count > 10000:
                 return True
-            seen.add(ptr)
             ptr = ptr.next
-
+            count += 1
+    
         return False
