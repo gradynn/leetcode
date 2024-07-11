@@ -11,21 +11,18 @@ class Solution:
         
         carry = 0
         while l or r:
+            res = carry
             if l and r:
-                res = l.val + r.val + carry
-                carry = res // 10
-                new = ListNode(res % 10)
+                res += l.val + r.val
                 l, r = l.next, r.next
             elif l:
-                res = l.val + carry
-                carry = res // 10
-                new = ListNode(res % 10)
+                res += l.val
                 l = l.next
             else:
-                res = r.val + carry
-                carry = res // 10
-                new = ListNode(res % 10)
+                res += r.val
                 r = r.next
+            carry = res // 10
+            new = ListNode(res % 10)
             ptr.next = new
             ptr = ptr.next
 
