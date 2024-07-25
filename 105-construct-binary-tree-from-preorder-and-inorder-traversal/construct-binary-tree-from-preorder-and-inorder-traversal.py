@@ -11,11 +11,7 @@ class Solution:
         
         root = TreeNode(preorder[0])
         
-        i = 0
-        while i < len(inorder):
-            if inorder[i] == root.val:
-                break
-            i += 1
+        i = inorder.index(root.val)
 
         leftInorder = inorder[:i]
         leftPreorder = preorder[1:1 + i]
