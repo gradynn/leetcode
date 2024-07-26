@@ -13,12 +13,12 @@ class Solution:
         if not root:
             return root
         
-        q = [root]
+        q = deque([root])
 
         while q:
             last = None
             for i in range(len(q)):
-                node = q.pop(0)
+                node = q.popleft()
 
                 if last:
                     last.next = node
