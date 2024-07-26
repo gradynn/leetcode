@@ -13,7 +13,8 @@ class Solution:
 
         index = inorder.index(root.val)
         leftInorder, rightInorder = inorder[:index], inorder[index + 1:]
-        leftPostorder, rightPostorder = postorder[:len(leftInorder)], postorder[len(leftInorder):-1]
+        leftSize = len(leftInorder)
+        leftPostorder, rightPostorder = postorder[:leftSize], postorder[leftSize:-1]
 
         root.left = self.buildTree(leftInorder, leftPostorder)
         root.right = self.buildTree(rightInorder, rightPostorder)
