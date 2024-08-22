@@ -1,18 +1,20 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         out = []
-        def dfs(path):
-            if sum(path) > target:
+
+        def dfs(path, m):
+            if sum(path) > target or m >= len(candidates):
                 return
             elif sum(path) == target:
-                path.sort()
-                if path not in out:
-                    out.append(path)
+                out.append(path)
                 return
-
-            for i in candidates:
-                dfs(path + [i])
-        dfs([])
+            
+            # include the min
+            dfs(path + [candidates[m]], m)
+            # don't include the min
+            dfs(path, m + 1)
+        dfs([], 0)
 
         return out
+
         
