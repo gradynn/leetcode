@@ -1,9 +1,16 @@
 class Solution:
     def mySqrt(self, x: int) -> int:
-        root = 0
-        for n in range(x + 1):
-            if (n * n) <= x:
-                root = n
+        l, r = 0, x
+
+        while l <= r:
+            m = (l + r) // 2
+            square = m * m
+
+            if square == x:
+                return m
+            elif square > x:
+                r = m - 1
             else:
-                break
-        return root
+                l = m + 1
+
+        return r
